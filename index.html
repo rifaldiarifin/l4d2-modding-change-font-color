@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Font Color | L4D2 Modding</title>
+    <link rel="stylesheet" href="/assets/css/index.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script src="/assets/js/index.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div id="root">
+        <section class="w-screen">
+            <div class="w-cnt pad-y-30">
+                <h1 class="mrgn-b-20 font-size-28 font-weg-500">Change Font Color | Scheme | L4D2 Modding</h1>
+                <p class="mrgn-b-20 font-size-14 line-heg-26">The scheme file is a resource list file that manages many controls such as, colors, fonts, borders, and others. not all controls are in the scheme sometimes it has been overridden by the script or through the UI element control resource file itself, the meaning of override here, with an example you want to change the color of the name on the teammate that is above their head, even though you have changed it through the scheme or other forced methods this will not be possible because it has been overridden or the color on the teammate's name has been handled by the script or resource file.</p>
+                <p class="mrgn-b-20 font-size-14 line-heg-26">Now let's take a look at some scheme files and what they are for, let's go through them one by one:</p>
+                
+                <div class="pad-x-20">
+                    <p class="mrgn-b-10 font-size-18 font-weg-500">1. clientscheme.res</p>
+                    <p class="mrgn-b-20 font-size-14 line-heg-26">This file takes control of the In-game UI, such as the scoreboard, HUD, colors on the HUD, etc., basically related to ingame only and this file is called and used only in In-game.</p>
+                </div>
+                <div class="pad-x-20">
+                    <p class="mrgn-b-10 font-size-18 font-weg-500">2. l4d360uischeme.res</p>
+                    <p class="mrgn-b-20 font-size-14 line-heg-26">This file is the same as above, it's just that l4d360uischeme takes control of the UI display outside the game such as Mainmenu, video setting window, audio settings, colors, fonts and others, basically related outside the game only.</p>
+                </div>
+                <div class="pad-x-20">
+                    <p class="mrgn-b-10 font-size-18 font-weg-500">3. chatscheme.res</p>
+                    <p class="mrgn-b-20 font-size-14 line-heg-26">This file is also the same as above, and this file only takes control of the Chat UI, you usually see when chat messages are in-game and you see text, colors, scrollbars, windows, etc. and this file is called and used only in the Chat UI.</p>
+                </div>
+                
+                <p class="mrgn-b-40 font-size-13 info-bgcol pad-x-10 pad-t-8 pad-b-8 rounded6"><span class="font-weg-700">INFO:</span> Remember not all controls are in the schema, sometimes they are overridden by scripts or resource files.</p>
+                
+                
+                <p class="mrgn-b-20 font-size-14 line-heg-26">For easier understanding, let's practice it on a simple case by creating a mod, changing the font color on the HUD, let's do it.</p>
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Getting Started</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Set up and install these tools, I recommend:</p>
+                <div class="pad-x-20 mrgn-b-40">
+                    <p class="mrgn-b-10 font-size-16 font-weg-500">1. <a href="https://web.archive.org/web/20191114220525/http://nemesis.thewavelength.net/index.php?p=26" class="hyperlink" target="_blank" rel="noopener">GCFScape</a></p>
+                    <p class="mrgn-b-10 font-size-16 font-weg-500">2. <a href="https://github.com/craftablescience/VPKEdit/releases" target="_blank" rel="noopener" class="hyperlink">VPKedit</a></p>
+                    <p class="mrgn-b-10 font-size-16 font-weg-500">3. <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener" class="hyperlink">Visual Studio Code</a> or Notepad whatever your Text editor</p>
+                </div>
+                
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Change Font Color by Scheme File</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">We will change the font color through the scheme file, follow the steps:</p>
+
+                <div class="pad-l-30 pad-r-30">
+                    <ul class="olist">
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            First we set up a new folder name it <span class="font-weg-700">"my_mod"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Open <span class="font-weg-700">my_mod</span> and create a new folder named <span class="font-weg-700">"resources"</span>. inside a mod, the folder named resources contains the resource list files
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap1.gif" alt="" style="max-width: 700px; width: 100%;">
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next we need to copy the file <code class="highlight-code">clientscheme.res</code> on left 4 dead 2, now go to the folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2"</span>
+                            <br>
+                            Search the file <code class="highlight-code">pak01_dir.vpk</code> and open it with GCFScape
+                            <br>
+                            <br>
+                            This is what it looks like:
+                            <br>
+                            <br>
+                            <img src="/assets/img/snap1.JPG" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            Ignore the other folders just focus on the <span class="font-weg-700">resource</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Continue to open the resource folder, there are many files there just search for the file <code class="highlight-code">clientscheme.res</code>
+                            <br>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            If found Hold click on the file <code class="highlight-code">clientscheme.res</code> drag to folder: <span class="font-weg-700">"my_mod\resource"</span> that has been made earlier. 
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap2.gif" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            And now we've got the file <code class="highlight-code">clientscheme.res</code>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next, open the file <code class="highlight-code">clientscheme.res</code> with Visual Studio Code or any text editor.
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > <span class="text-1">clientscheme.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+//
+// TRACKER SCHEME RESOURCE FILE
+//
+// sections:
+//		colors			- all the colors used by the scheme
+//		basesettings	- contains settings for app to use to draw controls
+//		fonts			- list of all the fonts used by app
+//		borders			- description of all the borders
+//
+//
+Scheme
+{
+    //Name - currently overriden in code
+    //{
+    //	"Name"	"ClientScheme"
+    //}
+
+    //////////////////////// COLORS ///////////////////////////
+    Colors
+    {
+        // base colors
+        "Orange"			"255 176 0 255"
+        "OrangeDim"			"255 176 0 120"
+        "LightOrange"		"188 112 0 128"
+        
+        "Red"				"192 28 0 140"
+        "Black"				"0 0 0 255"
+        "HealthHurtRed"		"192 28 0 255"
+        "TransparentDarkBlack"	"0 0 0 220"
+        "TransparentBlack"	"0 0 0 196"
+        "TransparentLightBlack"	"0 0 0 90"
+
+        // TERROR
+        "ProgressGreen"			"0 128 0 255"
+        "HealthGreen"			"0 200 0 255"
+        "BrightGreen"			"0 255 0 255"
+        "BrightRed"				"255 0 0 255"
+        "DeepRed"				"168 26 26 255"
+        "Blue"                  "138 182 219 255"
+        "Tan"				"209 199 151 255"
+        "BrightGray"		"216 216 216 255"
+        "MediumGray"        "145 145 145 255"
+        "TransparentGray"		"192 192 192 192"
+        "Gray"					"192 192 192 255"
+        "DarkGray"				"64 64 64 255"
+        "DarkerGray"            "40 40 40 255"
+        "Yellow"				"255 255 0 255"
+        "White"					"255 255 255 255"
+        "TransparentLightRed"	"255 0 0 90"
+        "HudIcon_Cyan"			"0 255 255 120"
+        "HudIcon_Cyan_Pulse"	"0 255 255 255"
+        "BrightCyan"			"0 255 255 255"
+        "Credits"				"192 192 192 192"
+        "TransparentGreen"		"64 255 64 192"
+    
+// Other code ...
+</code>
+                            </div>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            let's try editing some of the color keys below,
+                            <br>
+                            Find the color key in the row listed below and change it to a solid red color as shown in the preview below:
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Example:</span>
+                            <br>
+                            <code class="font-weg-700" style="white-space: pre;">Range value 0 - 255</code>
+                            <br>
+                            <code style="white-space: pre;">"Key_Color_Name"        "Red Green Blue Alpha"</code>
+                            <br>
+                            <code style="white-space: pre;">"BrightGray"            "216 216 216 255"</code>
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > <span class="text-1">clientscheme.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+41          "BrightGray"            "255 0 0 255"
+42          "MediumGray"            "255 0 0 255"
+43          "TransparentGray"       "255 0 0 255"
+44          "Gray"                  "255 0 0 255"
+...
+48          "White"                 "255 0 0 255"
+...
+247         "FgColor"               "255 0 0 255"
+</code>
+                            </div>
+                            <br>
+                            then save.
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next, we organize the VPKs in a folder <span class="font-weg-700">"my_mod"</span>, but before that we need to create a plain-text file in the outermost position inside the folder <span class="font-weg-700">"my_mod"</span> create an empty file named <code class="highlight-code">addoninfo.txt</code>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Open the file <code class="highlight-code">addoninfo.txt</code> copy the below and paste it into <code class="highlight-code">addoninfo.txt</code>, and save the changes.
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > <span class="text-1">addoninfo.txt</span></p>
+                                </div>
+<code class="codes language-plaintext">
+"AddonInfo"
+{
+    addonSteamAppID        550          // Steam app id add-on
+    addonversion           "1.0"        // Version add-on
+    addonauthor            "My Name"    // Your name
+    addontitle             "My mod"     // Title add-on
+    addonDescription       "Change font color"      // Description add-on
+}
+</code>
+                            </div>
+                            <br>
+                            <p class="mrgn-b-40 font-size-13 info-bgcol pad-x-10 pad-t-8 pad-b-8 rounded6"><span class="font-weg-700">INFO:</span> <span class="highlight-code">addoninfo.txt</span> is a file containing information about the mod, if this is not made it doesn't matter, it's just that information about the mod will not be read in the mod list menu in the game, but the mod still run.</p>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next, open VPKedit, select the file menu in the upper left corner, select<span class="font-weg-700"> Create VPK From Folder</span> 
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Select version <span class="font-weg-700">v1</span>, check <span class="font-weg-700">Save to single file</span> then click button <span class="font-weg-700">OK</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            A window will appear <span class="font-weg-700">"Use This Folder"</span>, navigate to the folder <span class="font-weg-700">"my_mod"</span>, then click button <span class="font-weg-700">Select Folder</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            After that another window will appear again <span class="font-weg-700">"Save New VPK"</span> to specify where the mod will be saved, Navigate to the folder 
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2\addons"</span>, 
+                            <br>
+                            then click button <span class="font-weg-700">Save</span>
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap3.gif" alt="" style="max-width: 700px; width: 100%;">
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Now open the Left 4 Dead 2 game and see what's changed.
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Screenshot:</span>
+                            <br>
+                            <img src="/assets/img/20240722211753_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <img src="/assets/img/20240722211835_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            There are changes to the color of the teammate name, scoreboard, progressbar and more.
+                            <br>
+                            <br>
+                            And that's how you change the font color through the scheme file, you can also add a new file to the resources <code class="highlight-code">l4d360uischeme.ui</code> and <code class="highlight-code">chatscheme.res</code> and edit some there.
+                        </li>
+                    </ul>
+                </div>
+
+                <span class="mrgn-b-40 dsp-block"></span>
+
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Change Font Color by Specific UI Resource List</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">If we previously changed the font color through the scheme file, now we will change the font color directly to the control UI resource list file, We will create a new custom Health Count and give it a color there, Follow the steps:</p>
+                <div class="pad-l-30 pad-r-30">
+                    <ul class="olist">
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            First go back to the folder <span class="font-weg-700">"my_mod"</span> open the resources folder create a new folder, name it <span class="font-weg-700">"ui"</span>, then open it, create a new folder again and name it <span class="font-weg-700">"hud"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next, open explorer go to the folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2"</span>
+                            <br>
+                            open the file <code class="highlight-code">pak01_dir.vpk</code> with GCFScape
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            We only need the file <code class="highlight-code">localplayerpanel.res</code>, this file handles the UI resources on our own Local Player HUD starting from the Healthbar, HealthNumber, Name, Avatar, and others, and actually there is one more related file, namely <code class="highlight-code">localplayerpanel_incap.res</code>, this file will be called when the player is in Incapitated condition, but for now we make it simple.
+                            <br>
+                            <br>
+                            the location of this file is inside <code class="highlight-code">pak01_dir.vpk</code>: <span class="font-weg-700">"resource\ui\hud"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Do as before, drag and drop the file <code class="highlight-code">localplayerpanel.res</code>, to folder <span class="font-weg-700">"my_mod\resource\hud"</span>
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap4.gif" alt="" style="max-width: 700px; width: 100%;">
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Now open file <code class="highlight-code">localplayerpanel.res</code> with Text Editor
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Preview:</span>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > ui > hud > <span class="text-1">localplayerpanel.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+"Resource/UI/HUD/LocalPlayerPanel.res"
+{
+    "BackgroundImage"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"BackgroundImage"
+        "xpos"			"0"
+        "ypos"			"25"
+        "wide"			"220"
+        "tall"			"55"
+        "zpos"			"-1"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+        "image"			"hud/healthbar_bg_player"
+        "drawColor"	"80 76 82 255"
+    }
+    
+    "Voice"
+    {
+        "ControlName"	"TeamDisplayVoicePanel"
+        "fieldName"		"Voice"
+        "xpos"			"28"
+        "ypos"			"12"
+        "wide"			"50"
+        "tall"			"50"
+        "visible"		"1"
+        "enabled"		"1"
+        "zpos"			"3"
+        "voice_icon"	"voice_self"
+    }
+    
+    "Head"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"Head"
+        "xpos"			"7"
+        "ypos"			"36"
+        "wide"			"36"
+        "tall"			"35"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+    }
+    
+    "Dead"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"Dead"
+        "xpos"			"20"
+        "ypos"			"28"
+        "wide"			"256"
+        "tall"			"128"
+        "zpos"			"3"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+        "image"			"hud/overlay_dead"
+    }
+    
+    "DuckingIcon"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"DuckingIcon"
+        "xpos"			"129" [!$DECK]
+        "ypos"			"29" [!$DECK]
+        "wide"			"25" [!$DECK]
+        "tall"			"25" [!$DECK]
+        "xpos"			"119" [$DECK]
+        "ypos"			"19" [$DECK]
+        "wide"			"35" [$DECK]
+        "tall"			"35" [$DECK]
+        "zpos"			"2"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+        "image"			"hud/crouch_survivor"
+    }
+    
+    "Health"
+    {
+        "ControlName"	"HealthPanel"
+        "fieldName"		"Health"
+        "xpos"			"44"
+        "ypos"			"56"
+        "wide"			"111"
+        "tall"			"17"
+        "visible"		"1"
+        "enabled"		"1"
+        "zpos"			"1"
+        
+        "new_material_style"	"1"
+        "healthbar_image_high"			"vgui/hud/healthbar_withglow_green"
+        "healthbar_image_medium"		"vgui/hud/healthbar_withglow_orange"
+        "healthbar_image_low"			"vgui/hud/healthbar_withglow_red"
+        "healthbar_image_grey"			"vgui/hud/healthbar_withglow_white"
+        
+        "healthbar_image_high_ticks"	"vgui/hud/healthbar_ticks_withglow_green"
+        "healthbar_image_medium_ticks"	"vgui/hud/healthbar_ticks_withglow_orange"
+        "healthbar_image_low_ticks"		"vgui/hud/healthbar_ticks_withglow_red"
+        "healthbar_image_grey_ticks"	"vgui/hud/healthbar_ticks_withglow_white"			
+    }
+    
+    "HealthIcon"
+    {
+        "ControlName"	"Label"
+        "fieldName"		"HealthIcon"
+        "xpos"			"46"
+        "ypos"			"31"
+        "wide"			"70"
+        "tall"			"26"
+        "visible"		"1"
+        "enabled"		"1"
+        "labelText"		","
+        "textAlignment"	"west"
+        "font"			"L4D_Icons"
+        "zpos"			"2"
+    }
+
+    "HealthNumber"
+    {
+        "ControlName"	"Label"
+        "fieldName"		"HealthNumber"
+        "xpos"			"56" [!$OSX]
+        "xpos"			"60" [$OSX]
+        "ypos"			"32"
+        "wide"			"70"
+        "tall"			"26"
+        "visible"		"1"
+        "enabled"		"1"
+        "labelText"		"%HealthNumber%"
+        "textAlignment"	"west"
+        "font"			"HUDHealth"
+        "zpos"			"2"
+    }
+}
+</code>
+                            </div>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            We will add a new HealthNumber, type the code below in the row after the <code>`HealthNumber`</code> is up to you to determine the name or fieldname, for now I name it <code>`NewHealthNumber`</code> as below:
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > clientscheme.res</p>
+                                </div>
+<code class="codes language-plaintext">
+    // Other code
+
+	"HealthNumber"
+	{
+		"ControlName"	"Label"
+		"fieldName"		"HealthNumber"
+		"xpos"			"56" [!$OSX]
+		"xpos"			"60" [$OSX]
+		"ypos"			"32"
+		"wide"			"70"
+		"tall"			"26"
+		"visible"		"1"
+		"enabled"		"1"
+		"labelText"		"%HealthNumber%"
+		"textAlignment"	"west"
+		"font"			"HUDHealth"
+		"zpos"			"2"
+	}
+
+	"NewHealthNumber"	// New HealthNumber with Cyan text color
+	{
+		"ControlName"               "Label"
+		"fieldName"                 "NewHealthNumber"
+		"xpos"                      "86"    // position will be right side of HealthNumber above
+		"ypos"                      "32"
+		"wide"                      "70"
+		"tall"                      "26"
+		"visible"                   "1"
+		"enabled"                   "1"
+		"labelText"                 "%HealthNumber%"
+		"textAlignment"             "west"
+		"font"                      "HUDHealth"
+		"zpos"                      "2"
+		"fgcolor_override           "0 255 255 255"
+		"defaultFgcolor_override    "0 255 255 255" // add this line if above not working
+	}
+}
+</code>
+                            </div>
+                            <br>
+                            <span class="font-weg-700 mrgn-b-10 dsp-block">Explanation:</span>
+                            <div class="pad-l-40 pad-r-10">
+                                <ul class="olist">
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">"NewHealthNumber"</code>: is the name of the UI element.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">ControlName</code>: are controls for UI elements such as Label, Button, Panel, EditablePanel, Frame, etc.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fieldName</code>: is the name of the UI element.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">xpos</code>: is the position in <span class="font-weg-700">Horizontal</span>, simply from the prefix <span class="font-weg-700">x</span> which means horizontal, and <span class="font-weg-700">pos</span> which stands for position.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">ypos</code>: is the position in <span class="font-weg-700">Vertical</span>, simply from the prefix <span class="font-weg-700">y</span> which means vertical, and <span class="font-weg-700">pos</span> which stands for position.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">zpos</code>: is the position in <span class="font-weg-700">front and back</span>, simply it's like you are editing a video or photo and there are various layers, so the higher the number the more in front of other UI elements, the smaller or minus the more behind other UI elements.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">wide</code>: 
+                                        is the width of the element.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">tall</code>: 
+                                        is the height of the element.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">visible</code>: type value is boolean <span class="font-weg-700">0</span> is hide, <span class="font-weg-700">1</span> is visible on screen.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">enabled</code>: the type value is boolean <span class="font-weg-700">0</span> is off or not working, <span class="font-weg-700">1</span> is on or working.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">labeltext</code>: type value string can also be numeric, the example above labeltext is filled with <code>"%HealthNumber%"</code>, sign <span class="font-weg-700">%</span> is to use a variable with a dynamic value <span class="font-weg-700">HealthNumber</span> file can only be accessed inside the <code class="highlight-code">localplayerpanel.res</code> and <code class="highlight-code">localplayerpanel_incap.res</code>, This <code>`labeltext`</code> property only exists on controls such as Label, Button, RichText, and related.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">textAlignment</code>: is the align position of the text, this property only exists on controls such as Label, Button, RichText, and other related, multiple values can be used:
+                                        <br>
+                                        <code>"west"</code> = <span class="font-weg-700">left</span>
+                                        <br>
+                                        <code>"east"</code> = <span class="font-weg-700">right</span>
+                                        <br>
+                                        <code>"north"</code> = <span class="font-weg-700">top</span>
+                                        <br>
+                                        <code>"south"</code> = <span class="font-weg-700">bottom</span>
+                                        <br>
+                                        <code>"north-west"</code> = <span class="font-weg-700">top left</span>
+                                        <br>
+                                        <code>"south-west"</code> = <span class="font-weg-700">bottom left</span>
+                                        <br>
+                                        <code>"north-east"</code> = <span class="font-weg-700">top right</span>
+                                        <br>
+                                        <code>"south-east"</code> = <span class="font-weg-700">bottom right</span>
+                                        <br>
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">font</code>: determines what kind of font is used for the element itself, the example above with the name <span class="font-weg-700">HUDHealth</span>, This font control is in the scheme file, in the case above is the file <code class="highlight-code">localplayerpanel.res</code> this file is related to <code class="highlight-code">clientscheme.res</code> to set the scheme control in the file, you can find it and edit it, even you can also create a new font control there.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code>: 
+                                        property to give color to the text.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">bgcolor_override</code>: 
+                                        property to give color to the background.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">defaultFgcolor_override</code>: 
+                                        same as above, the property to give the default color to the text, usually I only use it for controls like Label by forcing the element, along with adding this.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">defaultBgcolor_override</code>: 
+                                        property to give the background a default color.
+                                    </li>
+                                </ul>
+                            </div>
+                            <br>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            After that save, do as before compile one folder <span class="font-weg-700">"my_mod"</span> using VPKedit save in folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2\addons"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Open the Left 4 Dead 2 game and see the changes:
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Screenshot:</span>
+                            <br>
+                            <img src="/assets/img/20240723211110_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            <br>
+                            And that's how you can change the font color directly from the resource file.
+                        </li>
+                    </ul>
+                </div>
+                
+                <span class="mrgn-b-40 dsp-block"></span>
+
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Custom Scheme Color Then Implement To Specific Resource List</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">If we previously changed the specific font color of the control UI resource list file, now we will change the font color in one control UI resource list file but take a custom color from the Scheme file such as <code class="highlight-code">clientscheme.res</code>, We will create the HealthNumber element again but with a custom color scheme implemented into the UI element, follow the steps:</p>
+                <div class="pad-l-30 pad-r-30">
+                    <ul class="olist">
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Back in the Text Editor, open <code class="highlight-code">localplayerpanel.res</code> then create a new UI element under the <code>`NewHealthNumber`</code> element as below:
+                            <br> 
+                            <br> 
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > ui > hud > <span class="text-1">localplayerpanel.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+	// Other Code ...
+
+	"NewHealthNumber"	// New HealthNumber with clientscheme.res
+	{
+		"ControlName"	"Label"
+		"fieldName"		"NewHealthNumber"
+		"xpos"			"86"
+		"ypos"			"32"
+		"wide"			"70"
+		"tall"			"26"
+		"visible"		"1"
+		"enabled"		"1"
+		"labelText"		"%HealthNumber%"
+		"textAlignment"	"west"
+		"font"			"HUDHealth"
+		"zpos"			"2"
+		"fgcolor_override"	"0 255 255 255"
+		"defaultFgcolor_override"	"0 255 255 255" // add this line if above not working
+	}
+	
+	"NewHealthNumber_WithClientScheme"	// New HealthNumber with Cyan text color
+	{
+		"ControlName"	"Label"
+		"fieldName"		"NewHealthNumber_WithClientScheme"
+		"xpos"			"116"
+		"ypos"			"32"
+		"wide"			"70"
+		"tall"			"26"
+		"visible"		"1"
+		"enabled"		"1"
+		"labelText"		"%HealthNumber%"
+		"textAlignment"	"west"
+		"font"			"HUDHealth"
+		"zpos"			"2"
+		"fgcolor_override"	"MyColorScheme"
+	}
+}
+</code>
+                            </div>
+                            <br>
+                            As you can see, there on the property <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code> with value <span class="font-weg-700">MyColorScheme</span> This will look up the color scheme to the file <code class="highlight-code">clientscheme.res</code> with the color key <span class="font-weg-700">MyColorScheme</span>, currently we don't have that color key, let's create it now.
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next go to file <code class="highlight-code">clientscheme.res</code> we will create a color with key equal to <span class="font-weg-700">MyColorScheme</span>, name, capitalization, lowercase key color must be the same as the one in the <code class="highlight-code">localplayerpanel.res</code>, create above in the <span class="font-weg-700">Colors</span> scheme, as below:
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > <span class="text-1">clientscheme.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+//
+// TRACKER SCHEME RESOURCE FILE
+//
+// sections:
+//		colors			- all the colors used by the scheme
+//		basesettings	- contains settings for app to use to draw controls
+//		fonts			- list of all the fonts used by app
+//		borders			- description of all the borders
+//
+//
+Scheme
+{
+    //Name - currently overriden in code
+    //{
+    //	"Name"	"ClientScheme"
+    //}
+
+    //////////////////////// COLORS ///////////////////////////
+    Colors
+    {
+        // My Custom Colors
+        "MyColorScheme"			"190 0 255 255"
+
+        // base colors
+        "Orange"			"255 176 0 255"
+        "OrangeDim"			"255 176 0 120"
+        "LightOrange"		"188 112 0 128"
+</code>
+                            </div>
+                            <br>
+                            then save.
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Next as usual open VPKedit, we compile the <span class="font-weg-700">"my_mod"</span> folder and save it in the folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2\addons"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Open the Left 4 Dead 2 game and see the changes, as below:
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Screenshot:</span>
+                            <br>
+                            <img src="/assets/img/20240724201504_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <img src="/assets/img/20240724201614_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            And now, we have 3 HealthNumbers, the first is the original, the second HealthNumber is by directly changing the color to the resource file itself, and the third HealthNumber we directly change the color to the resource file itself but with <code class="highlight-code">clientscheme.res</code>.
+                        </li>
+                    </ul>
+                </div>
+
+                <span class="mrgn-b-40 dsp-block"></span>
+                
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Earlier we have made a simple mod to change the color of a UI element in the font, starting from the first one we have changed the color by changing from the scheme file in the font. <code class="highlight-code">clientscheme.res</code>, also we have made new <span class="font-weg-700">HealthNumber</span>  with the name <code>`NewHealthNumber`</code> and assign colors directly to its elements using the property <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code>, and finally we create another <span class="font-weg-700">HealthNumber</span> but with a property of <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code> with color asign to a file <code class="highlight-code">clientscheme.res</code></p>
+                
+                <p class="mrgn-b-10 font-size-14 line-heg-26">And that was a simple way to change the font color of a UI element, try to experiment changing something, add something and see how it changes.</p>
+                
+                <span class="mrgn-b-40 dsp-block"></span>
+
+                <p class="font-weg-700">Happy Modding ><</p>
+            </div>
+        </section>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    });
+</script>
+</body>
+</html>
+
+<!-- <div class="code-preview">
+    <div class="code-title">
+        <p>clientscheme.res</p>
+    </div>
+<code class="codes language-plaintext">
+</code>
+</div> -->

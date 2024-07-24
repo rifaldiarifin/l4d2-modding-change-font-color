@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Font Color | L4D2 Modding</title>
+    <link rel="stylesheet" href="/assets/css/index.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script src="/assets/js/index.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div id="root">
+        <section class="w-screen">
+            <div class="w-cnt pad-y-30">
+                <h1 class="mrgn-b-20 font-size-28 font-weg-500">Change Font Color | Scheme | L4D2 Modding</h1>
+                <p class="mrgn-b-20 font-size-14 line-heg-26">File scheme adalah file resource list yang mengatur banyak kendali seperti, warna, fonts, borders, control dan lainnya. tidak semua kendali ada pada skema terkadang sudah di override oleh script atau melalui file resource kendali element UI itu sendiri, maksud override disini kamu ingin merubah warna nama pada teammate yang ada diatas kepala mereka, walaupun sudah kamu rubah lewat scheme atau cara paksa lain ini tidak akan bisa karena sudah di override atau warna pada nama teammate sudah di tangani oleh script atau file resource</p>
+                <p class="mrgn-b-20 font-size-14 line-heg-26">sekarang mari kita lihat beberapa file scheme dan buat apa saja, Kita bahas satu-satu:</p>
+                
+                <div class="pad-x-20">
+                    <p class="mrgn-b-10 font-size-18 font-weg-500">1. clientscheme.res</p>
+                    <p class="mrgn-b-20 font-size-14 line-heg-26">file ini mengambil kendali pada tampilan UI In-game, seperti scoreboard, font HUD, warna pada HUD, dan lainnya, intinya berkaitan di ingame saja dan file ini dipanggil dan digunakan hanya di In-game saja.</p>
+                </div>
+                <div class="pad-x-20">
+                    <p class="mrgn-b-10 font-size-18 font-weg-500">2. l4d360uischeme.res</p>
+                    <p class="mrgn-b-20 font-size-14 line-heg-26">file ini sama saja dengan diatas, hanya saja l4d360uischeme mengambil kendali pada tampilan UI diluar game seperti Mainmenu, video setting window, audio setting, warna, fonts dan lainnya, intinya berkaitan di luar game saja.</p>
+                </div>
+                <div class="pad-x-20">
+                    <p class="mrgn-b-10 font-size-18 font-weg-500">3. chatscheme.res</p>
+                    <p class="mrgn-b-20 font-size-14 line-heg-26">file ini juga sama saja dengan diatas, dan file ini hanya mengambil kendali pada Chat UI saja, kamu biasanya melihat ketika chat message di in-game dan kamu melihat ada tulisan, warna, scrollbar, window, dan lain-lain dan file ini dipanggil dan digunakan hanya di Chat UI saja.</p>
+                </div>
+                
+                <p class="mrgn-b-40 font-size-13 info-bgcol pad-x-10 pad-t-8 pad-b-8 rounded6"><span class="font-weg-700">INFO:</span> ingat tidak semua kendali ada pada skema terkadang sudah di override oleh script atau file resource</p>
+                
+                
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Getting Started</h2>
+                <p class="mrgn-b-20 font-size-14 line-heg-26">Agar pemahaman lebih mudah langsung kita praktekan pada kasus sederhana dengan buat mod, mengubah warna font pada HUD</p>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Siapkan tool-tool ini, saya rekomendasi:</p>
+                <div class="pad-x-20 mrgn-b-40">
+                    <p class="mrgn-b-10 font-size-16 font-weg-500">1. <a href="" class="hyperlink">GCFScape</a></p>
+                    <p class="mrgn-b-10 font-size-16 font-weg-500">2. <a href="" class="hyperlink">VPKedit</a></p>
+                    <p class="mrgn-b-10 font-size-16 font-weg-500">3. <a href="" class="hyperlink">Visual Studio Code</a> or Notepad whatever your Text editor</p>
+                </div>
+                
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Change Font Color by Scheme File</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Kita akan mengganti warna font melalui file scheme, berikut langkah-langkah:</p>
+
+                <div class="pad-l-30 pad-r-30">
+                    <ul class="olist">
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Pertama kita siapkan folder baru beri nama "my_mod"
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Buka my_mod dan buat folder baru beri nama "resource", di dalam sebuah mod, folder dengan nama resource berisikan file-file resource list
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap1.gif" alt="" style="max-width: 700px; width: 100%;">
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Selanjutnya kita perlu menyalin file <code class="highlight-code">clientscheme.res</code> pada left 4 dead 2, sekarang pergi ke folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2"</span>
+                            <br>
+                            cari file <code class="highlight-code">pak01_dir.vpk</code> dan buka dengan GCFScape
+                            <br>
+                            <br>
+                            kira-kira seperti ini tampilannya:
+                            <br>
+                            <br>
+                            <img src="/assets/img/snap1.JPG" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            Hiraukan folder lainnya fokus saja ke folder <span class="font-weg-700">resource</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            lanjut buka folder resource, di sana ada banyak file cukup cari saja file <code class="highlight-code">clientscheme.res</code>
+                            <br>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Jika sudah ditemukan Tahan click pada file <code class="highlight-code">clientscheme.res</code> drag ke folder: <span class="font-weg-700">"my_mod\resource"</span> yang telah dibuat tadi, 
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap2.gif" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            dan OK kita sudah dapat file <code class="highlight-code">clientscheme.res</code> nya
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Setelah itu buka file <code class="highlight-code">clientscheme.res</code> dengan Visual Studio Code atau terserah Text editor apapun
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > <span class="text-1">clientscheme.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+//
+// TRACKER SCHEME RESOURCE FILE
+//
+// sections:
+//		colors			- all the colors used by the scheme
+//		basesettings	- contains settings for app to use to draw controls
+//		fonts			- list of all the fonts used by app
+//		borders			- description of all the borders
+//
+//
+Scheme
+{
+    //Name - currently overriden in code
+    //{
+    //	"Name"	"ClientScheme"
+    //}
+
+    //////////////////////// COLORS ///////////////////////////
+    Colors
+    {
+        // base colors
+        "Orange"			"255 176 0 255"
+        "OrangeDim"			"255 176 0 120"
+        "LightOrange"		"188 112 0 128"
+        
+        "Red"				"192 28 0 140"
+        "Black"				"0 0 0 255"
+        "HealthHurtRed"		"192 28 0 255"
+        "TransparentDarkBlack"	"0 0 0 220"
+        "TransparentBlack"	"0 0 0 196"
+        "TransparentLightBlack"	"0 0 0 90"
+
+        // TERROR
+        "ProgressGreen"			"0 128 0 255"
+        "HealthGreen"			"0 200 0 255"
+        "BrightGreen"			"0 255 0 255"
+        "BrightRed"				"255 0 0 255"
+        "DeepRed"				"168 26 26 255"
+        "Blue"                  "138 182 219 255"
+        "Tan"				"209 199 151 255"
+        "BrightGray"		"216 216 216 255"
+        "MediumGray"        "145 145 145 255"
+        "TransparentGray"		"192 192 192 192"
+        "Gray"					"192 192 192 255"
+        "DarkGray"				"64 64 64 255"
+        "DarkerGray"            "40 40 40 255"
+        "Yellow"				"255 255 0 255"
+        "White"					"255 255 255 255"
+        "TransparentLightRed"	"255 0 0 90"
+        "HudIcon_Cyan"			"0 255 255 120"
+        "HudIcon_Cyan_Pulse"	"0 255 255 255"
+        "BrightCyan"			"0 255 255 255"
+        "Credits"				"192 192 192 192"
+        "TransparentGreen"		"64 255 64 192"
+    
+// Other code ...
+</code>
+                            </div>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            kita coba edit beberapa key warna dibawah,
+                            <br>
+                            Cari key warna pada baris tertera dibawah mendekati dan ganti jadi warna merah solid seperti preview dibawah ini:
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Example:</span>
+                            <br>
+                            <code class="font-weg-700" style="white-space: pre;">Range value 0 - 255</code>
+                            <br>
+                            <code style="white-space: pre;">"Key_Color_Name"        "Red Green Blue Alpha"</code>
+                            <br>
+                            <code style="white-space: pre;">"BrightGray"            "216 216 216 255"</code>
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > <span class="text-1">clientscheme.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+41          "BrightGray"            "255 0 0 255"
+42          "MediumGray"            "255 0 0 255"
+43          "TransparentGray"       "255 0 0 255"
+44          "Gray"                  "255 0 0 255"
+...
+48          "White"                 "255 0 0 255"
+...
+247         "FgColor"               "255 0 0 255"
+</code>
+                            </div>
+                            <br>
+                            Jika sudah simpan
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Selanjutnya, kita susun ke VPK dalam satu folder <span class="font-weg-700">"my_mod"</span>, tapi sebelum itu kita perlu membuat satu file plain-text di posisi paling luar didalam folder <span class="font-weg-700">"my_mod"</span> buat file kosong beri nama <code class="highlight-code">addoninfo.txt</code>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Buka file <code class="highlight-code">addoninfo.txt</code> copy dibawah ini dan paste ke <code class="highlight-code">addoninfo.txt</code>, dan simpan perubahan
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > <span class="text-1">addoninfo.txt</span></p>
+                                </div>
+<code class="codes language-plaintext">
+"AddonInfo"
+{
+    addonSteamAppID        550          // Steam app id add-on
+    addonversion           "1.0"        // Version add-on
+    addonauthor            "My Name"    // Your name
+    addontitle             "My mod"     // Title add-on
+    addonDescription       "Change font color"      // Description add-on
+}
+</code>
+                            </div>
+                            <br>
+                            <p class="mrgn-b-40 font-size-13 info-bgcol pad-x-10 pad-t-8 pad-b-8 rounded6"><span class="font-weg-700">INFO:</span> <span class="highlight-code">addoninfo.txt</span> adalah file berisikan informasi tentang mod, jika ini tidak dibuat tidak masalah hanya saja informasi tentang mod tidak akan terbaca di menu list mod dalam game, tapi mod tetap berjalan</p>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Selanjutnya, buka VPKedit pilih menu file yang berada di sudut kiri atas, pilih <span class="font-weg-700">Create VPK From Folder</span> 
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Pilih version ke <span class="font-weg-700">v1</span>, centang <span class="font-weg-700">Save to single file</span> lalu click tombol <span class="font-weg-700">OK</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Akan muncul jendela <span class="font-weg-700">Use This Folder</span>, Arahkan ke folder <span class="font-weg-700">"my_mod"</span>, lalu click tombol <span class="font-weg-700">Select Folder</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Setelah itu akan muncul jendela lagi <span class="font-weg-700">Save New VPK</span> untuk menentukan dimana mod akan disimpan, Arahkan ke folder 
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2\addons"</span>, 
+                            <br>
+                            lalu click tombol <span class="font-weg-700">Save</span>
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap3.gif" alt="" style="max-width: 700px; width: 100%;">
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Sekarang buka game Left 4 Dead 2 dan lihat apa yang perubahannya
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Screenshot:</span>
+                            <br>
+                            <img src="/assets/img/20240722211753_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <img src="/assets/img/20240722211835_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            Terdapat perubahan pada warna teammate name, scoreboard, progressbar dan masih ada lainnya
+                            <br>
+                            <br>
+                            Dan seperti itulah car mengganti warna font melalui file scheme, anda juga bisa menambahkan file baru ke resource <code class="highlight-code">l4d360uischeme.ui</code> dan <code class="highlight-code">chatscheme.res</code> dan mengedit beberapa disana.
+                        </li>
+                    </ul>
+                </div>
+
+                <span class="mrgn-b-40 dsp-block"></span>
+
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Change Font Color by Specific UI Resource List</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Jika sebelumnya kita mengganti warna font melalui file scheme, sekarang kita akan mengganti warna font dengan langsung ke control UI file resource list nya, Kita akan membuat custom Hitungan Health baru dan memberinya warna disana, berikut langkah-langkah:</p>
+                <div class="pad-l-30 pad-r-30">
+                    <ul class="olist">
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Pertama kembali ke folder <span class="font-weg-700">"my_mod"</span> buka folder resource buat folder baru, beri nama <span class="font-weg-700">"ui"</span>, lalu buka folder <span class="font-weg-700">"ui"</span>, buat lagi folder baru beri nama <span class="font-weg-700">"hud"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Selanjutnya pergi kembali ke folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2"</span>
+                            <br>
+                            Buka kembali file <code class="highlight-code">pak01_dir.vpk</code> dengan GCFScape
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Kita hanya memerlukan file <code class="highlight-code">localplayerpanel.res</code>, file ini menangani resource UI pada HUD Local Player kita sendiri mulai dari Healthbar, HealthNumber, Name, Avatar, dan lainnya bisa dicari sendiri, sebenarnya ada satu file lagi berkaitan yaitu <code class="highlight-code">localplayerpanel_incap.res</code>, file ini akan terpanggil ketika player dalam kondisi Incapitated, tapi untuk sekarang kita buat sederhana saja
+                            <br>
+                            <br>
+                            lokasi file ini ada di dalam <code class="highlight-code">pak01_dir.vpk</code>: <span class="font-weg-700">"resource\ui\hud"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Lakukan cara seperti sebelumnya, drag and drop file <code class="highlight-code">localplayerpanel.res</code>, ke folder <span class="font-weg-700">"my_mod\resource\hud"</span>
+                            <br>
+                            <br>
+                            <img src="/assets/img/Snap4.gif" alt="" style="max-width: 700px; width: 100%;">
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Sekarang buka file <code class="highlight-code">localplayerpanel.res</code> dengan Text Editor
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Preview:</span>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > ui > hud > <span class="text-1">localplayerpanel.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+"Resource/UI/HUD/LocalPlayerPanel.res"
+{
+    "BackgroundImage"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"BackgroundImage"
+        "xpos"			"0"
+        "ypos"			"25"
+        "wide"			"220"
+        "tall"			"55"
+        "zpos"			"-1"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+        "image"			"hud/healthbar_bg_player"
+        "drawColor"	"80 76 82 255"
+    }
+    
+    "Voice"
+    {
+        "ControlName"	"TeamDisplayVoicePanel"
+        "fieldName"		"Voice"
+        "xpos"			"28"
+        "ypos"			"12"
+        "wide"			"50"
+        "tall"			"50"
+        "visible"		"1"
+        "enabled"		"1"
+        "zpos"			"3"
+        "voice_icon"	"voice_self"
+    }
+    
+    "Head"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"Head"
+        "xpos"			"7"
+        "ypos"			"36"
+        "wide"			"36"
+        "tall"			"35"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+    }
+    
+    "Dead"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"Dead"
+        "xpos"			"20"
+        "ypos"			"28"
+        "wide"			"256"
+        "tall"			"128"
+        "zpos"			"3"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+        "image"			"hud/overlay_dead"
+    }
+    
+    "DuckingIcon"
+    {
+        "ControlName"	"ImagePanel"
+        "fieldName"		"DuckingIcon"
+        "xpos"			"129" [!$DECK]
+        "ypos"			"29" [!$DECK]
+        "wide"			"25" [!$DECK]
+        "tall"			"25" [!$DECK]
+        "xpos"			"119" [$DECK]
+        "ypos"			"19" [$DECK]
+        "wide"			"35" [$DECK]
+        "tall"			"35" [$DECK]
+        "zpos"			"2"
+        "visible"		"1"
+        "enabled"		"1"
+        "scaleImage"	"1"
+        "image"			"hud/crouch_survivor"
+    }
+    
+    "Health"
+    {
+        "ControlName"	"HealthPanel"
+        "fieldName"		"Health"
+        "xpos"			"44"
+        "ypos"			"56"
+        "wide"			"111"
+        "tall"			"17"
+        "visible"		"1"
+        "enabled"		"1"
+        "zpos"			"1"
+        
+        "new_material_style"	"1"
+        "healthbar_image_high"			"vgui/hud/healthbar_withglow_green"
+        "healthbar_image_medium"		"vgui/hud/healthbar_withglow_orange"
+        "healthbar_image_low"			"vgui/hud/healthbar_withglow_red"
+        "healthbar_image_grey"			"vgui/hud/healthbar_withglow_white"
+        
+        "healthbar_image_high_ticks"	"vgui/hud/healthbar_ticks_withglow_green"
+        "healthbar_image_medium_ticks"	"vgui/hud/healthbar_ticks_withglow_orange"
+        "healthbar_image_low_ticks"		"vgui/hud/healthbar_ticks_withglow_red"
+        "healthbar_image_grey_ticks"	"vgui/hud/healthbar_ticks_withglow_white"			
+    }
+    
+    "HealthIcon"
+    {
+        "ControlName"	"Label"
+        "fieldName"		"HealthIcon"
+        "xpos"			"46"
+        "ypos"			"31"
+        "wide"			"70"
+        "tall"			"26"
+        "visible"		"1"
+        "enabled"		"1"
+        "labelText"		","
+        "textAlignment"	"west"
+        "font"			"L4D_Icons"
+        "zpos"			"2"
+    }
+
+    "HealthNumber"
+    {
+        "ControlName"	"Label"
+        "fieldName"		"HealthNumber"
+        "xpos"			"56" [!$OSX]
+        "xpos"			"60" [$OSX]
+        "ypos"			"32"
+        "wide"			"70"
+        "tall"			"26"
+        "visible"		"1"
+        "enabled"		"1"
+        "labelText"		"%HealthNumber%"
+        "textAlignment"	"west"
+        "font"			"HUDHealth"
+        "zpos"			"2"
+    }
+}
+</code>
+                            </div>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Kita akan menambahkan HealthNumber baru, caranya ketik kode dibawah buat di barisan setelah elemen <code>"HealthNumber"</code> untuk nama atau fieldname bebas untuk saya beri nama <code>"NewHealthNumber"</code> seperti dibawah:
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > clientscheme.res</p>
+                                </div>
+<code class="codes language-plaintext">
+    // Other code
+
+	"HealthNumber"
+	{
+		"ControlName"	"Label"
+		"fieldName"		"HealthNumber"
+		"xpos"			"56" [!$OSX]
+		"xpos"			"60" [$OSX]
+		"ypos"			"32"
+		"wide"			"70"
+		"tall"			"26"
+		"visible"		"1"
+		"enabled"		"1"
+		"labelText"		"%HealthNumber%"
+		"textAlignment"	"west"
+		"font"			"HUDHealth"
+		"zpos"			"2"
+	}
+
+	"NewHealthNumber"	// New HealthNumber with Cyan text color
+	{
+		"ControlName"               "Label"
+		"fieldName"                 "NewHealthNumber"
+		"xpos"                      "86"    // position will be right side of HealthNumber above
+		"ypos"                      "32"
+		"wide"                      "70"
+		"tall"                      "26"
+		"visible"                   "1"
+		"enabled"                   "1"
+		"labelText"                 "%HealthNumber%"
+		"textAlignment"             "west"
+		"font"                      "HUDHealth"
+		"zpos"                      "2"
+		"fgcolor_override           "0 255 255 255"
+		"defaultFgcolor_override    "0 255 255 255" // add this line if above not working
+	}
+}
+</code>
+                            </div>
+                            <br>
+                            <span class="font-weg-700 mrgn-b-10 dsp-block">Beberapa penjelasan properti beserta value pada resource list diatas:</span>
+                            <div class="pad-l-40 pad-r-10">
+                                <ul class="olist">
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">"NewHealthNumber"</code>: adalah nama pada elemen UI.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">ControlName</code>: adalah kendali untuk elemen UI seperti Label, Button, Panel, EditablePanel, Frame, lain-lain.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fieldName</code>: adalah nama pada elemen UI.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">xpos</code>: adalah posisi dalam hitungan <span class="font-weg-700">Horizontal</span>, simpelnya dari awalan <span class="font-weg-700">x</span> yang berarti horizontal, dan <span class="font-weg-700">pos</span> singkatan dari position
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">ypos</code>: adalah posisi dalam hitungan <span class="font-weg-700">Vertical</span>, simpelnya dari awalan <span class="font-weg-700">y</span> yang berarti vertical, dan <span class="font-weg-700">pos</span> singkatan dari position
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">zpos</code>: adalah posisi dalam <span class="font-weg-700">depan dan belakang</span>, simpelnya ini seperti anda mengedit video atau photo dan ada bermacam-macam layer, jadi semakin tinggi angka semakin berada paling depan elemen-elemen UI lainnya, semakin kecil atau minus semakin berada pada belakang elemen-element UI lainnya.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">wide</code>: 
+                                        adalah panjang dari elemen tersebut
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">tall</code>: 
+                                        adalah lebar dari elemen tersebut
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">visible</code>: type valuenya adalah boolean <span class="font-weg-700">0</span> adalah hide, <span class="font-weg-700">1</span> adalah terlihat pada layar
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">enabled</code>: type valuenya adalah boolean <span class="font-weg-700">0</span> adalah mati atau tidak berfungsi, <span class="font-weg-700">1</span> adalah aktif atau berfungsi
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">labeltext</code>: type value string juga bisa numeric, contoh diatas labeltext diisi dengan <code>"%HealthNumber%"</code>, tanda <span class="font-weg-700">%</span> adalah untuk menggunakan variable dengan value yang dinamis dan variable <span class="font-weg-700">HealthNumber</span> hanya bisa diakses di dalam file <code class="highlight-code">localplayerpanel.res</code> dan <code class="highlight-code">localplayerpanel_incap.res</code>, properti <code>`labeltext`</code> ini hanya ada pada kendali seperti Label, Button, RichText, dan terkait lainnya.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">textAlignment</code>: adalah posisi align pada text, properti ini hanya ada pada kendali seperti Label, Button, RichText, dan terkait lainnya, beberapa value bisa digunakan:
+                                        <br>
+                                        <code>"west"</code> = <span class="font-weg-700">left</span>
+                                        <br>
+                                        <code>"east"</code> = <span class="font-weg-700">right</span>
+                                        <br>
+                                        <code>"north"</code> = <span class="font-weg-700">top</span>
+                                        <br>
+                                        <code>"south"</code> = <span class="font-weg-700">bottom</span>
+                                        <br>
+                                        <code>"north-west"</code> = <span class="font-weg-700">top left</span>
+                                        <br>
+                                        <code>"south-west"</code> = <span class="font-weg-700">bottom left</span>
+                                        <br>
+                                        <code>"north-east"</code> = <span class="font-weg-700">top right</span>
+                                        <br>
+                                        <code>"south-east"</code> = <span class="font-weg-700">bottom right</span>
+                                        <br>
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">font</code>: penentuan seperti apa font digunakan untuk elemen itu sendiri, contoh diatas dengan nama <span class="font-weg-700">HUDHealth</span>, kendali font ini ada pada file scheme, dengan kasus diatas adalah file <code class="highlight-code">localplayerpanel.res</code> file ini berkaitan dengan <code class="highlight-code">clientscheme.res</code> untuk mengatur kendali scheme pada file, kamu bisa menemukannya dan mengeditnya, bahkan kamu juga bisa buat kendali font baru disana.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code>: 
+                                        properti untuk memberi warna pada text.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">bgcolor_override</code>: 
+                                        properti untuk memberi warna pada background.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">defaultFgcolor_override</code>: 
+                                        sama seperti diatas, properti untuk memberi warna default pada text, biasanya saya hanya menggunakannya untuk kendali seperti Label dengan memaksa elemen, berbarengan dengan menambahkan ini.
+                                    </li>
+                                    <li class="mrgn-b-10 font-size-14 line-heg-26">
+                                        <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">defaultBgcolor_override</code>: 
+                                        properti untuk memberi warna default pada background.
+                                    </li>
+                                </ul>
+                            </div>
+                            <br>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Setelah itu simpan, lakukan seperti sebelumnya susun satu folder <span class="font-weg-700">"my_mod"</span> menggunakan VPKedit simpan di folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2\addons"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Buka game Left 4 Dead 2 dan lihat perubahannya:
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Screenshot:</span>
+                            <br>
+                            <img src="/assets/img/20240723211110_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            <br>
+                            Dan seperti itulah car mengganti warna font melalui langsung dari file resource.
+                        </li>
+                    </ul>
+                </div>
+                
+                <span class="mrgn-b-40 dsp-block"></span>
+
+                <h2 class="mrgn-b-20 font-size-24 font-weg-500">Custom Scheme Color Then Implement To Specific Resource List</h2>
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Jika sebelumnya kita mengganti warna font spesifik dari control UI file resource list nya, sekarang kita akan mengganti warna font pada satu control UI file resource list tapi mengambil warna custom dari file Scheme seperti <code class="highlight-code">clientscheme.res</code>, Kita akan membuat elemen HealthNumber lagi tapi dengan custom warna skema yang di implementasikan ke elemen UI, berikut langkah-langkah:</p>
+                <div class="pad-l-30 pad-r-30">
+                    <ul class="olist">
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Kembali ke Text Editor, buka <code class="highlight-code">localplayerpanel.res</code> lalu buat elemen UI baru di bawah elemen <code>`NewHealthNumber`</code> seperti dibawah ini:
+                            <br> 
+                            <br> 
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > ui > hud > <span class="text-1">localplayerpanel.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+	// Other Code ...
+
+	"NewHealthNumber"	// New HealthNumber with clientscheme.res
+	{
+		"ControlName"	"Label"
+		"fieldName"		"NewHealthNumber"
+		"xpos"			"86"
+		"ypos"			"32"
+		"wide"			"70"
+		"tall"			"26"
+		"visible"		"1"
+		"enabled"		"1"
+		"labelText"		"%HealthNumber%"
+		"textAlignment"	"west"
+		"font"			"HUDHealth"
+		"zpos"			"2"
+		"fgcolor_override"	"0 255 255 255"
+		"defaultFgcolor_override"	"0 255 255 255" // add this line if above not working
+	}
+	
+	"NewHealthNumber_WithClientScheme"	// New HealthNumber with Cyan text color
+	{
+		"ControlName"	"Label"
+		"fieldName"		"NewHealthNumber_WithClientScheme"
+		"xpos"			"116"
+		"ypos"			"32"
+		"wide"			"70"
+		"tall"			"26"
+		"visible"		"1"
+		"enabled"		"1"
+		"labelText"		"%HealthNumber%"
+		"textAlignment"	"west"
+		"font"			"HUDHealth"
+		"zpos"			"2"
+		"fgcolor_override"	"MyColorScheme"
+	}
+}
+</code>
+                            </div>
+                            <br>
+                            Sperti yang kau lihat, disana pada properti <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code> dengan value <span class="font-weg-700">MyColorScheme</span> ini akan mencari warna skema ke file <code class="highlight-code">clientscheme.res</code> dengan key warna <span class="font-weg-700">MyColorScheme</span>, saat ini kita belum ada key warna tersebut mari kita buat itu sekarang.
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Selanjutnya pergi ke file <code class="highlight-code">clientscheme.res</code> kita akan buat warna dengan key sama dengan <span class="font-weg-700">MyColorScheme</span>, nama, besar, kecil huruf key warna harus sama dengan yang di <code class="highlight-code">localplayerpanel.res</code>, buat di atas di dalam scheme <span class="font-weg-700">Colors</span>, seperti dibawah ini:
+                            <br>
+                            <br>
+                            <div class="code-preview">
+                                <div class="code-title">
+                                    <p>my_mod > resource > <span class="text-1">clientscheme.res</span></p>
+                                </div>
+<code class="codes language-plaintext">
+//
+// TRACKER SCHEME RESOURCE FILE
+//
+// sections:
+//		colors			- all the colors used by the scheme
+//		basesettings	- contains settings for app to use to draw controls
+//		fonts			- list of all the fonts used by app
+//		borders			- description of all the borders
+//
+//
+Scheme
+{
+    //Name - currently overriden in code
+    //{
+    //	"Name"	"ClientScheme"
+    //}
+
+    //////////////////////// COLORS ///////////////////////////
+    Colors
+    {
+        // My Custom Colors
+        "MyColorScheme"			"190 0 255 255"
+
+        // base colors
+        "Orange"			"255 176 0 255"
+        "OrangeDim"			"255 176 0 120"
+        "LightOrange"		"188 112 0 128"
+</code>
+                            </div>
+                            <br>
+                            Jika sudah simpan.
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Setelah itu seperti biasa buka VPKedit, kita susun folder <span class="font-weg-700">"my_mod"</span> dan simpan di folder:
+                            <br>
+                            <span class="font-weg-700">"YOUR_STEAM_FOLDER\steamapps\common\Left 4 Dead 2\left4dead2\addons"</span>
+                        </li>
+                        <li class="mrgn-b-10 font-size-14 line-heg-26">
+                            Buka game Left 4 Dead 2 lihat perubahannya, kira-kira seperti dibawah ini:
+                            <br>
+                            <br>
+                            <span class="font-weg-700">Screenshot:</span>
+                            <br>
+                            <img src="/assets/img/20240724201504_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <img src="/assets/img/20240724201614_1.jpg" alt="" style="max-width: 700px; width: 100%;">
+                            <br>
+                            Dan sekarang, kita ada 3 HealthNumber yang pertama adalah original, HealthNumber kedua adalah dengan langsung mengganti warna ke file resource itu sendiri, dan HealthNumber yang ketiga kita langsung mengganti warna ke file resource itu sendiri tapi dengan <code class="highlight-code">clientscheme.res</code>
+                        </li>
+                    </ul>
+                </div>
+
+                <span class="mrgn-b-40 dsp-block"></span>
+                
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Tadi kita sudah membuat mod sederhana untuk merubah warna pada suatu elemen UI pada font, mulai dari yang pertama kita sudah mengganti warna dengan cara merubah dari file scheme pada <code class="highlight-code">clientscheme.res</code>, juga kita telah membuat <span class="font-weg-700">HealthNumber</span> baru dengan nama <code>`NewHealthNumber`</code> dan memberi warna langsung ke elemennya menggunakan properti <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code>, dan terakhir kita membuat <span class="font-weg-700">HealthNumber</span> lagi tapi dengan properti <code class="bg-fourth" style="padding: 2px 4px; font-weight: 700;">fgcolor_override</code> mengambil warna ke file <code class="highlight-code">clientscheme.res</code></p>
+                
+                <p class="mrgn-b-10 font-size-14 line-heg-26">Dan tadi adalah cara sederhana untuk mengubah warna font pada suatu elemen UI, cobalah untuk experimen mengubah sesuatu, tambahkan sesuatu dan lihat perubahnya.</p>
+                
+                <span class="mrgn-b-40 dsp-block"></span>
+
+                <p class="font-weg-700">Happy Modding ><</p>
+            </div>
+        </section>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    });
+</script>
+</body>
+</html>
+
+<!-- <div class="code-preview">
+    <div class="code-title">
+        <p>clientscheme.res</p>
+    </div>
+<code class="codes language-plaintext">
+</code>
+</div> -->
